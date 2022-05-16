@@ -7,7 +7,7 @@
     "test": "jest",
     "build": "parcel build",
     "start": "parcel",
-    "install": "cp dist/* .."
+    "install": "parcel build && cp dist/* .."
   },
   "browserslist": "> 0.5%, last 2 versions, not dead",
   "author": "Cesar Gonzalez (@cegonse)",

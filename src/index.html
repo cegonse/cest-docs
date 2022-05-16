@@ -2,21 +2,29 @@
 <html lang="en">
     <head>
         <meta charset="utf-8"/>
-        <title>Cest C++ Testing Framework</title>
+        <title>cest->framework();</title>
         <script src="https://pagecdn.io/lib/ace/1.4.8/ace.js" crossorigin="anonymous" integrity="sha256-+svOVB1WmhKhTy7N21gWvtyXn91qF0r52P2hIArRRug="></script>
         <script src="https://pagecdn.io/lib/ace/1.4.8/theme-xcode.min.js" crossorigin="anonymous"></script>
         <script src="https://pagecdn.io/lib/ace/1.4.8/mode-c_cpp.min.js" crossorigin="anonymous"></script>
+        <script src="main.js"></script>
         <link rel="stylesheet" type="text/css" href="styles.css">
+        <link rel="stylesheet" type="text/css" href="logo.css">
+        <link rel="stylesheet" type="text/css" href="header.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto&display=swap">
+        <link rel="shortcut icon" href="./images/icon.png" />
     </head>
     <body>
-        <div class="header">
-            <h2>Cest C++ Testing Framework</h2>
-            <a id="githubCi" href="https://github.com/cegonse/cest/commits/master"></a>
-            <a id="getFromGithub" href="https://github.com/cegonse/cest"><i class="fa fa-github"></i> Get it from GitHub</a>
-        </div>
-        <div class="description">
+        <header>
+            <h2>
+                <span class="cest-logo">
+                    <span class="cest-logo-highlight">cest</span><span class="cest-logo-main">->framework();</span>
+                </span>
+            </h2>
+            <a class="header-button header-button-first" id="documentation-button">Documentation</a>
+            <a id="github-button" href="https://github.com/cegonse/cest"></a>
+        </header>
+        <div id="description-block" class="description">
             <p class="descriptionText">— Cest is a C++ testing framework focused on simplicity and readability —</p>
             <p class="descriptionText">Main Features</p>
             <div class="mainFeatures">
@@ -25,10 +33,13 @@
                 <p><i class="featureIcon fa fa-area-chart"></i> JUnit Export<br />Generate JUnit compatible XML reports<br />to include in your CI pipeline.</p>
             </div>
         </div>
+        <div id="documentation-block" class="hidden">
+            Documentation
+        </div>
         <footer>
-            <span>&copy; César Gonzàlez 2019-2020 - Cest is MIT licensed</span>
+            <span>&copy; César Gonzàlez 2019-2022 - Cest is MIT licensed</span>
             <span class="socialMedia">
-                <a class="socialMediaBadge" href="https://twitter.com/andoba12"><i class="fa fa-twitter-square"></i></a> 
+                <a class="socialMediaBadge" href="https://twitter.com/andoba12"><i class="fa fa-twitter-square"></i></a>
                 <a class="socialMediaBadge" href="https://github.com/cegonse"><i class="fa fa-github-square"></i></a>
             </span>
         </footer>

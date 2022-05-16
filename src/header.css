@@ -1,0 +1,44 @@
+header {
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    align-items: center;
+    font-family: 'Roboto', sans-serif;
+    margin-left: 32px;
+    margin-right: 32px;
+    height: 64px;
+    box-shadow: 0 4px 2px -2px gray;
+    z-index: 10;
+}
+
+.header-button {
+    margin-left: 16px;
+    color: #000000;
+    text-decoration: none;
+
+    transition: 0.2s;
+}
+
+.header-button-first {
+    margin-left: auto;
+}
+
+.header-button:hover {
+    opacity: 60%;
+}
+
+#github-button {
+    height: 32px;
+    width: 32px;
+    margin-left: 32px;
+    background-image: url("./images/github.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    transition: 0.2s;
+    transition-timing-function: ease-in-out;
+}
+
+#github-button:hover {
+    opacity: 60%;
+}
