@@ -9,7 +9,7 @@
       
       
       <link rel="icon" href="../images/favicon.png">
-      <meta name="generator" content="mkdocs-1.3.0, mkdocs-material-8.2.15">
+      <meta name="generator" content="mkdocs-1.3.0, mkdocs-material-8.3.6">
     
     
       
@@ -17,11 +17,12 @@
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.c382b1dc.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.4a0965b7.min.css">
       
         
-        <link rel="stylesheet" href="../assets/stylesheets/palette.cc9b2e1e.min.css">
+        <link rel="stylesheet" href="../assets/stylesheets/palette.cbb835fc.min.css">
         
+      
       
     
     
@@ -325,8 +326,8 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#basic-types" class="md-nav__link">
-    Basic types
+  <a href="#generic-types" class="md-nav__link">
+    Generic types
   </a>
   
 </li>
@@ -462,8 +463,8 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#basic-types" class="md-nav__link">
-    Basic types
+  <a href="#generic-types" class="md-nav__link">
+    Generic types
   </a>
   
 </li>
@@ -546,16 +547,32 @@
 <h1 id="api-reference">API Reference</h1>
 <h2 id="test-definition">Test definition</h2>
 <h3 id="building-blocks">Building blocks</h3>
+<p>Test suites are defined by the <code>describe</code> block. Each <code>describe</code> block takes one lambda function as the main test body, and can have many <code>it</code> blocks. All the <code>it</code> blocks will be executed when running the test.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Due to how <code>describe</code> blocks are built in compilation-time, Cest does not support having multiple <code>describe</code> blocks in a single file, be it independently or nested.</p>
+</div>
+<p>Execution can be controlled using the <code>xit</code> and <code>fit</code> keywords. <code>xit</code> will skip the test, while <code>fit</code> will execute only that specific test. This can be useful if you want to avoid running a test that is not yet ready, or you want to focus in fixing a single test.</p>
 <div class="admonition note">
 <p class="admonition-title">Basic test definition</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">describe</span><span class="p">(</span><span class="s">&quot;each test suite&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">[]()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">  </span><span class="n">it</span><span class="p">(</span><span class="s">&quot;may contain&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">[]()</span><span class="w"> </span><span class="p">{});</span><span class="w"></span>
 <a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>
 <a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">  </span><span class="n">it</span><span class="p">(</span><span class="s">&quot;multiple test cases&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">[]()</span><span class="w"> </span><span class="p">{});</span><span class="w"></span>
-<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="p">});</span><span class="w"></span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="w">  </span><span class="n">fit</span><span class="p">(</span><span class="s">&quot;only this test will run&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">[]()</span><span class="w"> </span><span class="p">{});</span><span class="w"></span>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="w">  </span><span class="n">xit</span><span class="p">(</span><span class="s">&quot;this test will be skipped&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">[]()</span><span class="w"> </span><span class="p">{});</span><span class="w"></span>
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="p">});</span><span class="w"></span>
 </code></pre></div>
 </div>
 <h3 id="pre-conditions-and-post-conditions">Pre-conditions and post-conditions</h3>
+<p>Execution of test cases and suites can be wrapped to control setup and teardown using the <code>beforeEach</code>, <code>afterEach</code>, <code>beforeAll</code> and <code>afterAll</code> keywords. Order of execution of the setup and teardown keywords is <code>beforeAll</code> → <code>beforeEach</code> → test case → <code>afterEach</code> → <code>afterAll</code>.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Even though having multiple pre-condition or post-condition keywords in a single test suite will compile, the actual functions that will be used by Cest is not guaranteed in that case. To avoid problems, each test suite must contain <strong>only</strong> one of each.</p>
+</div>
+<p>Using setup and teardown keywords is the best way to gracefully control post and pre-conditions in your test suites and cases.</p>
 <div class="admonition note">
 <p class="admonition-title">Wrapping each test case</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="kt">int</span><span class="w"> </span><span class="o">*</span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">nullptr</span><span class="p">;</span><span class="w"></span>
@@ -576,8 +593,72 @@
 <a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a><span class="p">});</span><span class="w"></span>
 </code></pre></div>
 </div>
+<div class="admonition note">
+<p class="admonition-title">Wrapping each test suite</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="n">DatabaseConnection</span><span class="w"> </span><span class="n">connection</span><span class="p">;</span><span class="w"></span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="n">describe</span><span class="p">(</span><span class="s">&quot;Behavior of pre and post conditions&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">[]()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="w">  </span><span class="n">beforeAll</span><span class="p">([]()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="w">    </span><span class="n">connection</span><span class="p">.</span><span class="n">connectTo</span><span class="p">(</span><span class="s">&quot;localhost&quot;</span><span class="p">);</span><span class="w"></span>
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="w">  </span><span class="p">});</span><span class="w"></span>
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="w">  </span><span class="n">afterAll</span><span class="p">([]()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="w">    </span><span class="n">connection</span><span class="p">.</span><span class="n">close</span><span class="p">();</span><span class="w"></span>
+<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a><span class="w">  </span><span class="p">});</span><span class="w"></span>
+<a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>
+<a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a><span class="w">  </span><span class="n">it</span><span class="p">(</span><span class="s">&quot;can perform queries&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">[]()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a><span class="w">    </span><span class="n">expect</span><span class="p">(</span><span class="n">connection</span><span class="p">.</span><span class="n">getById</span><span class="p">(</span><span class="s">&quot;&quot;</span><span class="p">)).</span><span class="n">toBeNull</span><span class="p">();</span><span class="w"></span>
+<a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a><span class="w">  </span><span class="p">});</span><span class="w"></span>
+<a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a><span class="p">});</span><span class="w"></span>
+</code></pre></div>
+</div>
 <h2 id="assertions">Assertions</h2>
-<h3 id="basic-types">Basic types</h3>
+<p>Cest uses matchers to assert values in tests. Assertion keywords are generated through templates, ranging from common assertions to specialization to specific types (like strings, lists, etc...).</p>
+<p>An assertion failing to validate its value will stop the test, showing the error through the output. Remaining tests will continue to run.</p>
+<p>The basic form of any assertion is:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="n">expect</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="p">(</span><span class="n">value</span><span class="p">).[</span><span class="n">assertion</span><span class="p">](...);</span><span class="w"></span>
+</code></pre></div>
+<p>Where assertion can be comparing it to another value, validating its NULL, validating its empty... For example:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="n">expect</span><span class="p">(</span><span class="s">&quot;hello&quot;</span><span class="p">).</span><span class="n">toEqual</span><span class="p">(</span><span class="s">&quot;bye&quot;</span><span class="p">);</span><span class="w"> </span><span class="c1">// This will fail, as hello does not match bye</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="n">expect</span><span class="p">(</span><span class="mh">0x00000000</span><span class="p">).</span><span class="n">toBeNull</span><span class="p">();</span><span class="w"> </span><span class="c1">// This will pass, as NULL equals zero</span>
+</code></pre></div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Since assertions are generated through templates, asserted type <code>T</code> must implement specific operators to match them to the target value. Basic (built-in) types implement them, but if using custom types (like classes or structures), the operators will have to be manually overloaded.</p>
+</div>
+<h3 id="generic-types">Generic types</h3>
+<p>These assertions apply to any type <code>T</code> which is not included in the following sections.</p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Description</th>
+<th>Comparation operator</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>toBe&lt;T&gt;(T expected)</code></td>
+<td>Passes if <code>value</code> matches <code>expected</code>, evaluated through expression <code>(value == expected)</code></td>
+<td><code>operator==</code></td>
+</tr>
+<tr>
+<td><code>toEqual&lt;T&gt;(T expected)</code></td>
+<td>An alias to <code>toBe</code>, kept for styling purposes. Both are interchangeable</td>
+<td><code>operator==</code></td>
+</tr>
+<tr>
+<td><code>toBeTruthy()</code></td>
+<td>Passes if <code>value</code> equals true, evaluated through expression <code>(value)</code></td>
+<td><code>operator==</code></td>
+</tr>
+<tr>
+<td><code>toBeFalsy()</code></td>
+<td>Passes if <code>value</code> equals false, evaluated through expression <code>(!value)</code></td>
+<td><code>operator==</code></td>
+</tr>
+</tbody>
+</table>
 <h3 id="strings">Strings</h3>
 <h3 id="collections">Collections</h3>
 <h3 id="pointers">Pointers</h3>
@@ -589,6 +670,7 @@
 
               
             </article>
+            
           </div>
         </div>
         
@@ -596,7 +678,8 @@
       
         <footer class="md-footer">
   
-    <nav class="md-footer__inner md-grid" aria-label="Footer">
+    
+    <nav class="md-footer__inner md-grid" aria-label="Footer" >
       
         
         <a href="../quickstart/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Quickstart" rel="prev">
@@ -677,10 +760,10 @@
     <div class="md-dialog" data-md-component="dialog">
       <div class="md-dialog__inner md-typeset"></div>
     </div>
-    <script id="__config" type="application/json">{"base": "..", "features": ["header.autohide"], "search": "../assets/javascripts/workers/search.2a1c317c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": "..", "features": ["header.autohide"], "search": "../assets/javascripts/workers/search.85cb4492.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
     
     
-      <script src="../assets/javascripts/bundle.a6c66575.min.js"></script>
+      <script src="../assets/javascripts/bundle.a877e258.min.js"></script>
       
     
   </body>
