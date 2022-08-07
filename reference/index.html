@@ -337,12 +337,38 @@
     Strings
   </a>
   
+    <nav class="md-nav" aria-label="Strings">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#using-regular-expressions-for-string-matchers" class="md-nav__link">
+    Using regular expressions for string matchers
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
         
           <li class="md-nav__item">
   <a href="#collections" class="md-nav__link">
     Collections
   </a>
+  
+    <nav class="md-nav" aria-label="Collections">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#stdvector" class="md-nav__link">
+    std::vector
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
         
@@ -368,13 +394,6 @@
         <li class="md-nav__item">
   <a href="#parametrized-tests" class="md-nav__link">
     Parametrized tests
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#extending-the-assertions" class="md-nav__link">
-    Extending the assertions
   </a>
   
 </li>
@@ -474,12 +493,38 @@
     Strings
   </a>
   
+    <nav class="md-nav" aria-label="Strings">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#using-regular-expressions-for-string-matchers" class="md-nav__link">
+    Using regular expressions for string matchers
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
         
           <li class="md-nav__item">
   <a href="#collections" class="md-nav__link">
     Collections
   </a>
+  
+    <nav class="md-nav" aria-label="Collections">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#stdvector" class="md-nav__link">
+    std::vector
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
         
@@ -505,13 +550,6 @@
         <li class="md-nav__item">
   <a href="#parametrized-tests" class="md-nav__link">
     Parametrized tests
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#extending-the-assertions" class="md-nav__link">
-    Extending the assertions
   </a>
   
 </li>
@@ -552,7 +590,12 @@
 <p class="admonition-title">Warning</p>
 <p>Due to how <code>describe</code> blocks are built in compilation-time, Cest does not support having multiple <code>describe</code> blocks in a single file, be it independently or nested.</p>
 </div>
-<p>Execution can be controlled using the <code>xit</code> and <code>fit</code> keywords. <code>xit</code> will skip the test, while <code>fit</code> will execute only that specific test. This can be useful if you want to avoid running a test that is not yet ready, or you want to focus in fixing a single test.</p>
+<p>Execution can be controlled using the <code>xit</code> and <code>fit</code> keywords:</p>
+<ul>
+<li><code>xit</code> will skip the test.</li>
+<li><code>fit</code> will execute only that specific test.</li>
+</ul>
+<p>This can be useful if you want to avoid running a test that is not yet ready, or you want to focus in fixing a single test.</p>
 <div class="admonition note">
 <p class="admonition-title">Basic test definition</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">describe</span><span class="p">(</span><span class="s">&quot;each test suite&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">[]()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
@@ -627,13 +670,13 @@
 <p>Since assertions are generated through templates, asserted type <code>T</code> must implement specific operators to match them to the target value. Basic (built-in) types implement them, but if using custom types (like classes or structures), the operators will have to be manually overloaded.</p>
 </div>
 <h3 id="generic-types">Generic types</h3>
-<p>These assertions apply to any type <code>T</code> which is not included in the following sections.</p>
+<p>These assertions apply to a <code>value</code> of any type <code>T</code>, including the ones Cest has a specialization for (see next sections).</p>
 <table>
 <thead>
 <tr>
 <th>Method</th>
 <th>Description</th>
-<th>Comparation operator</th>
+<th>Equivalient operator</th>
 </tr>
 </thead>
 <tbody>
@@ -660,11 +703,132 @@
 </tbody>
 </table>
 <h3 id="strings">Strings</h3>
+<p>These assertions apply to a <code>value</code> of any type based on <code>std::string</code>. All assertions which apply to any type <code>T</code> also apply to this type.</p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>toMatch(std::string expected)</code></td>
+<td>Passes if string <code>value</code> contains substring <code>expected</code></td>
+</tr>
+<tr>
+<td><code>toMatch(Regex(x))</code></td>
+<td>Passes if string <code>value</code> matches with regular expression defined in Regex macro. See example below.</td>
+</tr>
+<tr>
+<td><code>toHaveLength(size_t length)</code></td>
+<td>Passes if string <code>value</code> lexicographical length equals <code>length</code></td>
+</tr>
+</tbody>
+</table>
+<h4 id="using-regular-expressions-for-string-matchers">Using regular expressions for string matchers</h4>
+<p>Regular expression matchers accept any regular expression accepted by <code>std::regex</code>. The following examples are valid regular expression assertions:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="n">it</span><span class="p">(</span><span class="s">&quot;asserts regexs matches&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">[]()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="w">  </span><span class="n">expect</span><span class="p">(</span><span class="s">&quot;Hello world cest&quot;</span><span class="p">).</span><span class="n">toMatch</span><span class="p">(</span><span class="n">Regex</span><span class="p">(</span><span class="s">&quot;^Hell.*cest$&quot;</span><span class="p">));</span><span class="w"></span>
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="w">  </span><span class="n">expect</span><span class="p">(</span><span class="s">&quot;I have 12 apples&quot;</span><span class="p">).</span><span class="n">toMatch</span><span class="p">(</span><span class="n">Regex</span><span class="p">(</span><span class="s">&quot;.*</span><span class="se">\\</span><span class="s">d+ apples&quot;</span><span class="p">));</span><span class="w"></span>
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="w">  </span><span class="n">expect</span><span class="p">(</span><span class="s">&quot;To match a partial match&quot;</span><span class="p">).</span><span class="n">toMatch</span><span class="p">(</span><span class="n">Regex</span><span class="p">(</span><span class="s">&quot;</span><span class="se">\\</span><span class="s">w match$&quot;</span><span class="p">));</span><span class="w"></span>
+<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="p">});</span><span class="w"></span>
+</code></pre></div>
 <h3 id="collections">Collections</h3>
+<p>Cest supports creating assertions for standard library collections. In the current version, <code>vector</code> is supported.</p>
+<h4 id="stdvector"><code>std::vector</code></h4>
+<p>These assertions apply to a vector <code>value</code> of any type based on <code>std::vector&lt;T&gt;</code>. All assertions which apply to any type <code>T</code> also apply to this type.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>To be able to perform assertions on objects of type <code>std::vector&lt;T&gt;</code>, template type <code>T</code> must support comparation through the operator <code>operator==</code>.</p>
+</div>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>toEqual(std::vector&lt;T&gt; expected)</code></td>
+<td>Passes if vector <code>value</code> contains the same number of items as <code>expected</code>, and all items contained in both vectors are equal and are at the same position</td>
+</tr>
+<tr>
+<td><code>toContain(T item)</code></td>
+<td>Passes if vector <code>value</code> contains an instance of <code>item</code></td>
+</tr>
+<tr>
+<td><code>toHaveLength(size_t length)</code></td>
+<td>Passes if vector <code>value</code> number of items equals <code>length</code></td>
+</tr>
+</tbody>
+</table>
 <h3 id="pointers">Pointers</h3>
+<p>These assertions apply to a <code>value</code> of any pointer type <code>T*</code>.</p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>toEqualMemory(T *expected, size_t length)</code></td>
+<td>Passes if <code>value</code> matches byte by byte compared wit <code>expected</code>, from address <code>expected</code> until <code>expected + length</code></td>
+</tr>
+<tr>
+<td><code>toBeNull()</code></td>
+<td>Passes if <code>value</code> equals address <code>0x0</code></td>
+</tr>
+<tr>
+<td><code>toBeNotNull()</code></td>
+<td>Passes if <code>value</code> does not equal address <code>0x0</code></td>
+</tr>
+</tbody>
+</table>
 <h3 id="exceptions">Exceptions</h3>
+<p>Cest supports asserting whether the result of an arbitrary expression raises a C++ exception based on type <code>std::exception</code>. The interface must be executed inside an <code>it</code> block, and accepts a lambda function (the asserted expression).</p>
+<p>See the following example:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="kt">void</span><span class="w"> </span><span class="nf">readFile</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">path</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">path</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="w">    </span><span class="k">throw</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">exception</span><span class="p">(</span><span class="s">&quot;Bad path!&quot;</span><span class="p">);</span><span class="w"></span>
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="w">  </span><span class="p">}</span><span class="w"></span>
+<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="p">}</span><span class="w"></span>
+<a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>
+<a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a><span class="n">describe</span><span class="p">(</span><span class="s">&quot;File reader&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">[]()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a><span class="w">  </span><span class="n">it</span><span class="p">(</span><span class="s">&quot;fails to read files with empty path&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">[]()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">path</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="p">;</span><span class="w"></span>
+<a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a>
+<a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a><span class="w">    </span><span class="n">assertThrows</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">exception</span><span class="o">&gt;</span><span class="p">([</span><span class="o">=</span><span class="p">]()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<a id="__codelineno-6-12" name="__codelineno-6-12" href="#__codelineno-6-12"></a><span class="w">      </span><span class="n">readFile</span><span class="p">(</span><span class="n">path</span><span class="p">);</span><span class="w"></span>
+<a id="__codelineno-6-13" name="__codelineno-6-13" href="#__codelineno-6-13"></a><span class="w">    </span><span class="p">});</span><span class="w"></span>
+<a id="__codelineno-6-14" name="__codelineno-6-14" href="#__codelineno-6-14"></a><span class="w">  </span><span class="p">});</span><span class="w"></span>
+<a id="__codelineno-6-15" name="__codelineno-6-15" href="#__codelineno-6-15"></a><span class="p">});</span><span class="w"></span>
+</code></pre></div>
 <h2 id="parametrized-tests">Parametrized tests</h2>
-<h2 id="extending-the-assertions">Extending the assertions</h2>
+<p>Cest supports parametrizing test execution. Given a defined set of values, a parametrized test will run once for each of the values in the set. The value is passed to the test as a function argument.</p>
+<p>This pattern is useful when building tests where the same behaviour has to be validated against a defined set of data (for example, when working with enumerated values or ranged sets).</p>
+<p>See the following example to see how to define a parametrized test, which validates summing two integers and validating its result:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="k">struct</span><span class="w"> </span><span class="nc">OperandsAndResult</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="n">first</span><span class="p">;</span><span class="w"></span>
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="n">second</span><span class="p">;</span><span class="w"></span>
+<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="n">result</span><span class="p">;</span><span class="w"></span>
+<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="p">}</span><span class="w"></span>
+<a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a>
+<a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a><span class="n">describe</span><span class="p">(</span><span class="s">&quot;Calculator&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">[]()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a><span class="w">  </span><span class="n">it</span><span class="p">(</span><span class="s">&quot;can add numbers&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">[]()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a><span class="w">    </span><span class="n">withParameter</span><span class="o">&lt;</span><span class="n">OperandsAndResult</span><span class="o">&gt;</span><span class="p">()</span><span class="w"></span>
+<a id="__codelineno-7-10" name="__codelineno-7-10" href="#__codelineno-7-10"></a><span class="w">      </span><span class="p">.</span><span class="n">withValue</span><span class="p">(</span><span class="n">OperandsAndResult</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">))</span><span class="w"></span>
+<a id="__codelineno-7-11" name="__codelineno-7-11" href="#__codelineno-7-11"></a><span class="w">      </span><span class="p">.</span><span class="n">withValue</span><span class="p">(</span><span class="n">OperandsAndResult</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p">))</span><span class="w"></span>
+<a id="__codelineno-7-12" name="__codelineno-7-12" href="#__codelineno-7-12"></a><span class="w">      </span><span class="p">.</span><span class="n">thenDo</span><span class="p">([](</span><span class="n">OperandsAndResult</span><span class="w"> </span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<a id="__codelineno-7-13" name="__codelineno-7-13" href="#__codelineno-7-13"></a><span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">sum</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">x</span><span class="p">.</span><span class="n">first</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">x</span><span class="p">.</span><span class="n">second</span><span class="p">;</span><span class="w"></span>
+<a id="__codelineno-7-14" name="__codelineno-7-14" href="#__codelineno-7-14"></a><span class="w">        </span><span class="n">expect</span><span class="p">(</span><span class="n">sum</span><span class="p">).</span><span class="n">toEqual</span><span class="p">(</span><span class="n">x</span><span class="p">.</span><span class="n">result</span><span class="p">);</span><span class="w"></span>
+<a id="__codelineno-7-15" name="__codelineno-7-15" href="#__codelineno-7-15"></a><span class="w">      </span><span class="p">});</span><span class="w"></span>
+<a id="__codelineno-7-16" name="__codelineno-7-16" href="#__codelineno-7-16"></a><span class="w">  </span><span class="p">});</span><span class="w"></span>
+<a id="__codelineno-7-17" name="__codelineno-7-17" href="#__codelineno-7-17"></a><span class="p">});</span><span class="w"></span>
+</code></pre></div>
 <h2 id="cest-runner-cli-parameters">Cest runner CLI parameters</h2>
 <h2 id="signal-behavior">Signal behavior</h2>
 

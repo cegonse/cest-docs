@@ -9,7 +9,12 @@ Test suites are defined by the `describe` block. Each `describe` block takes one
 !!! warning
     Due to how `describe` blocks are built in compilation-time, Cest does not support having multiple `describe` blocks in a single file, be it independently or nested.
 
-Execution can be controlled using the `xit` and `fit` keywords. `xit` will skip the test, while `fit` will execute only that specific test. This can be useful if you want to avoid running a test that is not yet ready, or you want to focus in fixing a single test.
+Execution can be controlled using the `xit` and `fit` keywords:
+
+- `xit` will skip the test.
+- `fit` will execute only that specific test.
+
+This can be useful if you want to avoid running a test that is not yet ready, or you want to focus in fixing a single test.
 
 !!! note "Basic test definition"
     ```cpp
@@ -96,9 +101,9 @@ expect(0x00000000).toBeNull(); // This will pass, as NULL equals zero
 
 ### Generic types
 
-These assertions apply to any type `T` which is not included in the following sections.
+These assertions apply to a `value` of any type `T`, including the ones Cest has a specialization for (see next sections).
 
-| Method                         | Description                                                                | Comparation operator |
+| Method                         | Description                                                                | Equivalient operator |
 | ------------------------------ | -------------------------------------------------------------------------- | ---------------------- |
 | `toBe<T>(T expected)`          | Passes if `value` matches `expected`, evaluated through expression `(value == expected)` | `operator==` |
 | `toEqual<T>(T expected)`       | An alias to `toBe`, kept for styling purposes. Both are interchangeable | `operator==` |
@@ -107,15 +112,104 @@ These assertions apply to any type `T` which is not included in the following se
 
 ### Strings
 
+These assertions apply to a `value` of any type based on `std::string`. All assertions which apply to any type `T` also apply to this type.
+
+| Method                         | Description                                                                |
+| ------------------------------ | -------------------------------------------------------------------------- |
+| `toMatch(std::string expected)` | Passes if string `value` contains substring `expected` |
+| `toMatch(Regex(x))` | Passes if string `value` matches with regular expression defined in Regex macro. See example below. |
+| `toHaveLength(size_t length)` | Passes if string `value` lexicographical length equals `length` |
+
+#### Using regular expressions for string matchers
+
+Regular expression matchers accept any regular expression accepted by `std::regex`. The following examples are valid regular expression assertions:
+
+```cpp
+it("asserts regexs matches", []() {
+  expect("Hello world cest").toMatch(Regex("^Hell.*cest$"));
+  expect("I have 12 apples").toMatch(Regex(".*\\d+ apples"));
+  expect("To match a partial match").toMatch(Regex("\\w match$"));
+});
+```
+
 ### Collections
+
+Cest supports creating assertions for standard library collections. In the current version, `vector` is supported.
+
+#### `std::vector`
+
+These assertions apply to a vector `value` of any type based on `std::vector<T>`. All assertions which apply to any type `T` also apply to this type.
+
+!!! warning
+    To be able to perform assertions on objects of type `std::vector<T>`, template type `T` must support comparation through the operator `operator==`.
+
+| Method                         | Description                                                                |
+| ------------------------------ | -------------------------------------------------------------------------- |
+| `toEqual(std::vector<T> expected)` | Passes if vector `value` contains the same number of items as `expected`, and all items contained in both vectors are equal and are at the same position |
+| `toContain(T item)` | Passes if vector `value` contains an instance of `item` |
+| `toHaveLength(size_t length)` | Passes if vector `value` number of items equals `length` |
 
 ### Pointers
 
+These assertions apply to a `value` of any pointer type `T*`.
+
+| Method | Description |
+| ------------------- | ---------- |
+| `toEqualMemory(T *expected, size_t length)` | Passes if `value` matches byte by byte compared wit `expected`, from address `expected` until `expected + length` |
+| `toBeNull()` | Passes if `value` equals address `0x0` |
+| `toBeNotNull()` | Passes if `value` does not equal address `0x0` |
+
 ### Exceptions
+
+Cest supports asserting whether the result of an arbitrary expression raises a C++ exception based on type `std::exception`. The interface must be executed inside an `it` block, and accepts a lambda function (the asserted expression).
+
+See the following example:
+
+```cpp
+void readFile(std::string path) {
+  if (path == "") {
+    throw std::exception("Bad path!");
+  }
+}
+
+describe("File reader", []() {
+  it("fails to read files with empty path", []() {
+    std::string path = "";
+    
+    assertThrows<std::exception>([=]() {
+      readFile(path);
+    });
+  });
+});
+```
 
 ## Parametrized tests
 
-## Extending the assertions
+Cest supports parametrizing test execution. Given a defined set of values, a parametrized test will run once for each of the values in the set. The value is passed to the test as a function argument.
+
+This pattern is useful when building tests where the same behaviour has to be validated against a defined set of data (for example, when working with enumerated values or ranged sets).
+
+See the following example to see how to define a parametrized test, which validates summing two integers and validating its result:
+
+```cpp
+struct OperandsAndResult {
+  int first;
+  int second;
+  int result;
+}
+
+describe("Calculator", []() {
+  it("can add numbers", []() {
+    withParameter<OperandsAndResult>()
+      .withValue(OperandsAndResult(1, 1, 2))
+      .withValue(OperandsAndResult(2, 3, 5))
+      .thenDo([](OperandsAndResult x) {
+        int sum = x.first + x.second;
+        expect(sum).toEqual(x.result);
+      });
+  });
+});
+```
 
 ## Cest runner CLI parameters
 
