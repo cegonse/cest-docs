@@ -4,8 +4,10 @@ WORKDIR /material/
 RUN pip install mkdocs
 RUN pip install mkdocs-material
 RUN pip install mkdocs-material-extensions
+RUN useradd -u 1000 mkdocs
 
 FROM base AS build
+USER mkdocs
 CMD ["mkdocs", "build"]
 
 FROM base AS serve
