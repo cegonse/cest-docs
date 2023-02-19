@@ -222,4 +222,14 @@ describe("Calculator", []() {
 
 ## Cest runner CLI parameters
 
+Cest tests are stand-alone executables which have to be compiled and run individually. Execution behavior can be modified through command line options.
+
+| Option | Description |
+| ------ | ----------- |
+| `-q`/`--quiet` | Supress normal output (use only `.` for passed tests and a red `F` for failed tests) |
+| `-r`/`--randomize` | Randomize test execution inside a single suite. Randomization uses `std::default_random_engine` |
+| `-s [seed]`/`--seed [seed]` | Inject seed for randomization (should be an unsigned integer value) |
+
 ## Signal behavior
+
+The Cest runner captures the following POSIX signals upon startup: `SIGSEGV`, `SIGFPE`, `SIGBUS`, `SIGILL`, `SIGTERM`, `SIGXCPU` and `SIGXFSZ`. Test are marked as failed if any of them raises during its execution. The POSIX function `signal()` is used for this purpose. Take this into account when testing code that captures signals, as both could interfer.
