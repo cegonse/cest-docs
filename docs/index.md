@@ -1,4 +1,4 @@
-#<center>— Cest is a C++ testing framework focused on simplicity and readability —</center>
+#<center>— C++ testing made simple —</center>
 
 
 === "A simple test"
@@ -72,5 +72,3 @@ as you would in JavaScript, Python or Ruby. One of the main objectives of Cest i
 Includes exception handling assertions, parametrized tests, pointer assertions, integration with STL collections, and more. Want more? Planned features include parametric tests, extended collection support, async support, and more
 
 # <center>Why yet another testing framework?</center>
-
-> asd

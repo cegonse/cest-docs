@@ -110,6 +110,15 @@ These assertions apply to a `value` of any type `T`, including the ones Cest has
 | `toBeTruthy()`                  | Passes if `value` equals true, evaluated through expression `(value)` | `operator==` |
 | `toBeFalsy()`                  | Passes if `value` equals false, evaluated through expression `(!value)` | `operator==` |
 
+### Floating point types
+
+These assertions apply to a `value` of any type `T` inheriting from `float` or `double`. All assertions which apply to any type `T` also apply to this type.
+
+| Method                              | Description                                                                |
+| ----------------------------------- | -------------------------------------------------------------------------- |
+| `toBe<T>(T expected, T epsilon)`    | Passes if the absolute distance between `value` and `expected` is less than the specified epsilon (ε), evaluated through expression `fabs(actual - expected) > epsilon`. Default epsilon (ε) is ε=10⁻⁴ for 32 bit float values, and ε=10⁻⁶ for 64 bit float values |
+| `toEqual<T>(T expected, T epsilon)` | An alias to `toBe`, kept for styling purposes. Both are interchangeable |
+
 ### Strings
 
 These assertions apply to a `value` of any type based on `std::string`. All assertions which apply to any type `T` also apply to this type.
@@ -175,7 +184,7 @@ void readFile(std::string path) {
 describe("File reader", []() {
   it("fails to read files with empty path", []() {
     std::string path = "";
-    
+
     assertThrows<std::exception>([=]() {
       readFile(path);
     });
