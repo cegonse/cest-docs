@@ -1,9 +1,12 @@
 all: build
 
 start:
-	@./start.sh
+	docker build --target serve -t cest-docs .
+	xdg-open http://localhost:8000
+	docker run --rm --publish 8000:8000 --name cest-docs --mount type=bind,source=$(shell pwd),target='/material' cest-docs
 
 build:
-	@./build.sh
+	docker build --target build -t cest-docs .
+	docker run --rm --name cest-docs --mount type=bind,source=$(shell pwd),target='/material' cest-docs
 
-.PHONY := start build
+.PHONY := all build start
