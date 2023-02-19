@@ -868,7 +868,31 @@
 <a id="__codelineno-7-17" name="__codelineno-7-17" href="#__codelineno-7-17"></a><span class="p">});</span>
 </code></pre></div>
 <h2 id="cest-runner-cli-parameters">Cest runner CLI parameters</h2>
+<p>Cest tests are stand-alone executables which have to be compiled and run individually. Execution behavior can be modified through command line options.</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>-q</code>/<code>--quiet</code></td>
+<td>Supress normal output (use only <code>.</code> for passed tests and a red <code>F</code> for failed tests)</td>
+</tr>
+<tr>
+<td><code>-r</code>/<code>--randomize</code></td>
+<td>Randomize test execution inside a single suite. Randomization uses <code>std::default_random_engine</code></td>
+</tr>
+<tr>
+<td><code>-s [seed]</code>/<code>--seed [seed]</code></td>
+<td>Inject seed for randomization (should be an unsigned integer value)</td>
+</tr>
+</tbody>
+</table>
 <h2 id="signal-behavior">Signal behavior</h2>
+<p>The Cest runner captures the following POSIX signals upon startup: <code>SIGSEGV</code>, <code>SIGFPE</code>, <code>SIGBUS</code>, <code>SIGILL</code>, <code>SIGTERM</code>, <code>SIGXCPU</code> and <code>SIGXFSZ</code>. Test are marked as failed if any of them raises during its execution. The POSIX function <code>signal()</code> is used for this purpose. Take this into account when testing code that captures signals, as both could interfer.</p>
 
 
 
@@ -890,7 +914,7 @@
       <div class="md-copyright">
   
     <div class="md-copyright__highlight">
-      Copyright &copy; 2018 - 2022 César González Segura - Cest is MIT licensed
+      Copyright &copy; 2018 - 2023 César González Segura - Cest is MIT licensed
     </div>
   
   

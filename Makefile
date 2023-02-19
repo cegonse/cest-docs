@@ -8,4 +8,4 @@ build:
 	mv site/* .
 	rm -rf site
 
-.PHONY := start build
+.PHONY := build
