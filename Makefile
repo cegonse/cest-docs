@@ -1,9 +1,11 @@
 all: build
 
-start:
-	@./start.sh
-
 build:
-	@./build.sh
+	rm -rf assets
+	rm -rf quickstart
+	rm -rf reference
+	rm -rf search
+	mv site/* .
+	rm -rf site
 
 .PHONY := start build
