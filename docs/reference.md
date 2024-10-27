@@ -192,6 +192,47 @@ describe("File reader", []() {
 });
 ```
 
+### Adding custom assertions
+
+To add custom assertions, the following methods must be implemented as template specializations of the built-in `expectFunction` and `Assertion` classes. You can find a full example in the [GitHub repository](https://github.com/cegonse/cest/blob/master/test/examples/test_custom_assertions.cpp), or follow this structure to get quick-started:
+
+```cpp
+#include <cest>
+
+template<>
+class Assertion<MyType> {
+public:
+  Assertion(const char *file, int line, MyType value) {
+    actual = value;
+    assertion_file = std::string(file);
+    assertion_line = line;
+  }
+
+  toBeWhatever(MyType other) {
+    if (other.foo() != actual.bar()) {
+      throw AssertionError(assertion_file, assertion_line, "The failure message")
+    }
+  }
+
+private:
+  MyType actual;
+  std::string assertion_file;
+  int assertion_line;
+};
+
+template<>
+Assertion<MyType> expectFunction(const char *file, int line, MyType actual) {
+  return Assertion<MyType>(file, line, actual);
+}
+
+describe("Custom assertions", []() {
+  it("overrides for MyType", []() {
+    MyType a, b;
+    expect(a).toBeWhatever(b);
+  });
+});
+```
+
 ## Parametrized tests
 
 Cest supports parametrizing test execution. Given a defined set of values, a parametrized test will run once for each of the values in the set. The value is passed to the test as a function argument.
