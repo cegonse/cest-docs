@@ -226,9 +226,10 @@ Cest tests are stand-alone executables which have to be compiled and run individ
 
 | Option | Description |
 | ------ | ----------- |
-| `-q`/`--quiet` | Supress normal output (use only `.` for passed tests and a red `F` for failed tests) |
 | `-r`/`--randomize` | Randomize test execution inside a single suite. Randomization uses `std::default_random_engine` |
 | `-s [seed]`/`--seed [seed]` | Inject seed for randomization (should be an unsigned integer value) |
+| `-o` / `--only-suite-result` | Only output the result of the whole test suite as a single line |
+| `-t` / `--tree-suite-result` | Output the result of the test suite in tree format, with indents for each nested suite |
 
 ## Signal behavior
 

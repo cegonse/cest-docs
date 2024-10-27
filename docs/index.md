@@ -15,7 +15,27 @@
       });
     });
     ```
-=== "Working with exceptions"
+=== "Nested test suites"
+    ```cpp
+    #include <cest>
+
+    describe("DatabaseConnector", []() {
+      describe("connect()", []() {
+        it("succeeds at connecting to host", []() {
+          auto result = DatabaseConnector().connect();
+          expect(result).toEqual(Result::SUCCESS);
+        });
+      });
+
+      describe("disconnect()", []() {
+        it("fails to disconnect if not connected", []() {
+          auto result = DatabaseConnector().disconnect();
+          expect(result).toEqual(Result::FAILURE);
+        });
+      });
+    });
+    ```
+=== "Exceptions"
     ``` cpp
     #include <cest>
 
@@ -27,7 +47,7 @@
       });
     });
     ```
-=== "Advanced collection features"
+=== "Asserting collections"
     ``` cpp
     #include <cest>
 
@@ -71,4 +91,17 @@ as you would in JavaScript, Python or Ruby. One of the main objectives of Cest i
 ### :fontawesome-solid-wand-magic-sparkles: Feature rich from the get-go
 Includes exception handling assertions, parametrized tests, pointer assertions, integration with STL collections, and more. Want more? Planned features include parametric tests, extended collection support, async support, and more
 
-# <center>Why yet another testing framework?</center>
+# <center>Contribute to Cest Framework</center>
+
+Do you like Cest Framework? Are you planning on using it on your C or C++ projects?
+
+If you enjoy it, it would be great to have your Star in the [GitHub repository](https://github.com/cegonse/cest)!
+
+Are you missing any feature? Open an issue and let's start the conversation to get it implemented.
+
+Do you feel like contributing? Check the contribution guide in the GitHub repository README file, and contribute to Cest. These are the current contributors of Cest, click on their avatars to go to their GitHub profiles:
+
+<div class="grid cards" markdown>
+  <a href="https://github.com/cegonse"><img width="128" src="https://avatars.githubusercontent.com/u/10237441?v=4"></img></a>
+  <a href="https://github.com/jamofer"><img width="128" src="https://avatars.githubusercontent.com/u/9080627?v=4"></img></a>
+</div>
