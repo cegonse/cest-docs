@@ -1,4 +1,4 @@
-#<center>— C++ testing made simple —</center>
+#<center>C++ testing made simple</center>
 
 
 === "A simple test"
@@ -78,6 +78,27 @@
     });
     ```
 
+<div class="grid cards" style="padding-bottom: 24px; padding-top: 24px" markdown>
+
+-   :material-clock-fast:{ .lg .middle } __Get Started__
+
+    ---
+
+    Checkout the [quick start](./quickstart/first.md) guide and start
+    building your first test in a minute!
+
+    [:octicons-arrow-right-24: Quick start](./quickstart/first.md)
+
+-   :material-code-block-braces:{ .lg .middle } __API Reference__
+
+    ---
+
+    Find all the nitty gritty details of Cest and make the most
+    out of your tests.
+
+    [:octicons-arrow-right-24: API Reference](./reference.md)
+</div>
+
 # <center>Main features</center>
 
 ### :material-source-branch: Single Header
@@ -85,11 +106,11 @@ All features are included in a single C++ header,
 making it easy to integrate into any project's existing pipeline. Just include `cest` in each test file to compile a self-contained and runnable test
 
 ### :material-lightbulb-on: BDD inspired API
-Using from `it` to `expect`, write your tests
+By using `it` , `describe` and `expect`, write your tests
 as you would in JavaScript, Python or Ruby. One of the main objectives of Cest is slashing the learning curve towards C++ testing. No more esoteric syntax in C++ tests!
 
 ### :fontawesome-solid-wand-magic-sparkles: Feature rich from the get-go
-Includes exception handling assertions, parametrized tests, pointer assertions, integration with STL collections, and more. Want more? Planned features include parametric tests, extended collection support, async support, and more
+Includes exception handling assertions, parametrized tests, pointer assertions, integration with STL collections, and more. Want more? Planned features include parametric tests, extended collection support, async execution support, and more
 
 # <center>Contribute to Cest Framework</center>
 

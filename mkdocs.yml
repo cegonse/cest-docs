@@ -3,8 +3,15 @@ copyright: Copyright &copy; 2018 - 2024 César González Segura - Cest is MIT li
 repo_url: https://github.com/cegonse/cest
 edit_uri: ""
 repo_name: cegonse/cest
+nav:
+  - Home: index.md
+  - Quickstart:
+    - Writing your first test: quickstart/first.md
+    - Integrating with CMake: quickstart/cmake.md
+    - Testing C code: quickstart/bare_c.md
+    - Creating custom assertions: quickstart/custom_expect.md
+  - API Reference: reference.md
 markdown_extensions:
-  - attr_list
   - attr_list
   - md_in_html
   - pymdownx.highlight:
@@ -22,6 +29,7 @@ markdown_extensions:
 theme:
   features:
     - header.autohide
+    - content.code.annotate
   logo: assets/logo.png
   favicon: images/favicon.png
   palette:
