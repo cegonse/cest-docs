@@ -4,12 +4,33 @@
 
 ### Building blocks
 
-Test suites are defined by the `describe` block. Each `describe` block takes one lambda function as the main test body, and can have many `it` blocks. All the `it` blocks will be executed when running the test.
+Test suites are defined by a top-level `describe` block. Each `describe` block takes one lambda function as the main test body, and can have many `it` blocks. All the `it` blocks will be executed when running the test.
+
+Each `describe` block may have multiple nested `describe` blocks. All `describe` blocks will be executed in outside-inside order, starting from the top-level describe block.
+
+For example, with the following set of `describe` and `it` blocks:
+
+!!! note "Nested test suites"
+    ```cpp
+    describe("Socket", []() {
+      describe("send()", []() {
+        it("sends data", []() {});
+      });
+
+      describe("recv()", []() {
+        it("receives data", []() {});
+      });
+
+      it("does nothing", []() {});
+    });
+    ```
+
+The statements in the top-level `describe` block will be executed first (the `does nothing` test case), and then the `send()` and `recv()` describe blocks will be executed consecutively.
 
 !!! warning
-    Due to how `describe` blocks are built in compilation-time, Cest does not support having multiple `describe` blocks in a single file, be it independently or nested.
+    Due to the way `describe` blocks are arranged in compilation-time, Cest does not support having multiple top-level `describe` blocks in a single test file.
 
-Execution can be controlled using the `xit` and `fit` keywords:
+Test case execution can be controlled using the `xit` and `fit` keywords:
 
 - `xit` will skip the test.
 - `fit` will execute only that specific test.
@@ -42,40 +63,45 @@ Using setup and teardown keywords is the best way to gracefully control post and
     ```cpp
     int *data = nullptr;
 
-    describe("Behavior of pre and post conditions", []() {
-      beforeEach([]() {
+    describe("Behavior of pre and post conditions", [&]() { // (1)
+      beforeEach([&]() { // (1)
         data = new int;
         *data = 0;
       });
 
-      afterEach([]() {
+      afterEach([&]() { // (1)
         delete data;
       });
 
-      it("has no memory leaks", []() {
+      it("has no memory leaks", [&]() { // (1)
         expect(*data).toEqual(0);
       });
     });
     ```
 
+    1. Note how the lambda expression is defined with reference capture scope (`&`), as the test is accesing the `data` variable which is defined at the top level.
+
+
 !!! note "Wrapping each test suite"
     ```cpp
     DatabaseConnection connection;
 
-    describe("Behavior of pre and post conditions", []() {
-      beforeAll([]() {
+    describe("Behavior of pre and post conditions", [&]() { // (1)
+      beforeAll([&]() { // (1)
         connection.connectTo("localhost");
       });
 
-      afterAll([]() {
+      afterAll([&]() { // (1)
         connection.close();
       });
 
-      it("can perform queries", []() {
+      it("can perform queries", [&]() { // (1)
         expect(connection.getById("")).toBeNull();
       });
     });
     ```
+
+    1. Note how the lambda expression is defined with reference capture scope (`&`), as the test is accesing the `data` variable which is defined at the top level.
 
 ## Assertions
 
@@ -118,6 +144,8 @@ These assertions apply to a `value` of any type `T` inheriting from `float` or `
 | ----------------------------------- | -------------------------------------------------------------------------- |
 | `toBe<T>(T expected, T epsilon)`    | Passes if the absolute distance between `value` and `expected` is less than the specified epsilon (ε), evaluated through expression `fabs(actual - expected) > epsilon`. Default epsilon (ε) is ε=10⁻⁴ for 32 bit float values, and ε=10⁻⁶ for 64 bit float values |
 | `toEqual<T>(T expected, T epsilon)` | An alias to `toBe`, kept for styling purposes. Both are interchangeable |
+| `toBeGreaterThan<T>(T expected)`    | Passes if `value` is greater than `expected` |
+| `toBeLessThan<T>(T expected)`       | Passes if `value` is smaller than `expected` |
 
 ### Strings
 
@@ -125,6 +153,8 @@ These assertions apply to a `value` of any type based on `std::string`. All asse
 
 | Method                         | Description                                                                |
 | ------------------------------ | -------------------------------------------------------------------------- |
+| `toBe<T>(T expected)`          | Passes if `value` matches `expected`, evaluated through expression `(value == expected)` | `operator==` |
+| `toEqual<T>(T expected)`       | An alias to `toBe`, kept for styling purposes. Both are interchangeable | `operator==` |
 | `toMatch(std::string expected)` | Passes if string `value` contains substring `expected` |
 | `toMatch(Regex(x))` | Passes if string `value` matches with regular expression defined in Regex macro. See example below. |
 | `toHaveLength(size_t length)` | Passes if string `value` lexicographical length equals `length` |
@@ -154,7 +184,8 @@ These assertions apply to a vector `value` of any type based on `std::vector<T>`
 
 | Method                         | Description                                                                |
 | ------------------------------ | -------------------------------------------------------------------------- |
-| `toEqual(std::vector<T> expected)` | Passes if vector `value` contains the same number of items as `expected`, and all items contained in both vectors are equal and are at the same position |
+| `toBe(std::vector<T> expected)` | Passes if vector `value` contains the same number of items as `expected`, and all items contained in both vectors are equal and are at the same position |
+| `toEqual(std::vector<T> expected)` | An alias to `toBe`, kept for styling purposes. Both are interchangeable |
 | `toContain(T item)` | Passes if vector `value` contains an instance of `item` |
 | `toHaveLength(size_t length)` | Passes if vector `value` number of items equals `length` |
 

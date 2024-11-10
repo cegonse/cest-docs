@@ -159,7 +159,7 @@ describe("Calculator", []() { // (1)
 2. Test-suites can be nested one inside each other. Cest will run them in outside-in order.
 3. `expect()` is the keyword that lets you do assertions on the calculation results of your code. The whole set of available assertions is available in the [API reference](../reference.md)
 
-With our test in place, let's build and run the calculator test. The test can be easily run by executing the compiled file, as Cest tests are stand-along executable applications. Check out the different output styles in the API reference [API reference](../reference.md) or by running the test with the `--help` flag.
+With our test in place, let's build and run the calculator test. The test can be easily run by executing the compiled file, as Cest tests are stand-alone executable applications. Check out the different output styles in the API reference [API reference](../reference.md) or by running the test with the `--help` flag.
 
 ```bash title="Compiling the test"
 g++ -Ilib -Isrc src/calculator.cpp test/calculator.test.cpp -o build/calculator_test
@@ -224,5 +224,5 @@ With this simple example, you have seen how does Cest Framework work, how to cre
 Next, you can check how to integrate Cest Framework with a complex build system such as CMake.
 
 <div class="grid cards" style="padding-top: 24px" markdown>
-- [:octicons-arrow-right-24: Integrating with CMake](./quickstart/first.md)
+- [Integrating with CMake :octicons-arrow-right-24:](./cmake.md)
 </div>
