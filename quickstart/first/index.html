@@ -685,7 +685,7 @@ more about each section of the test file.</p>
 <li>Test-suites can be nested one inside each other. Cest will run them in outside-in order.</li>
 <li><code>expect()</code> is the keyword that lets you do assertions on the calculation results of your code. The whole set of available assertions is available in the <a href="../../reference/">API reference</a></li>
 </ol>
-<p>With our test in place, let's build and run the calculator test. The test can be easily run by executing the compiled file, as Cest tests are stand-along executable applications. Check out the different output styles in the API reference <a href="../../reference/">API reference</a> or by running the test with the <code>--help</code> flag.</p>
+<p>With our test in place, let's build and run the calculator test. The test can be easily run by executing the compiled file, as Cest tests are stand-alone executable applications. Check out the different output styles in the API reference <a href="../../reference/">API reference</a> or by running the test with the <code>--help</code> flag.</p>
 <div class="highlight"><span class="filename">Compiling the test</span><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>g++<span class="w"> </span>-Ilib<span class="w"> </span>-Isrc<span class="w"> </span>src/calculator.cpp<span class="w"> </span>test/calculator.test.cpp<span class="w"> </span>-o<span class="w"> </span>build/calculator_test
 </code></pre></div>
 <p>After compiling the test, the directory structure will look like this:</p>
@@ -730,7 +730,7 @@ more about each section of the test file.</p>
 <p>Next, you can check how to integrate Cest Framework with a complex build system such as CMake.</p>
 <div class="grid cards" style="padding-top: 24px">
 <ul>
-<li><a href="./quickstart/first.md"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13.22 19.03a.75.75 0 0 1 0-1.06L18.19 13H3.75a.75.75 0 0 1 0-1.5h14.44l-4.97-4.97a.749.749 0 0 1 .326-1.275.75.75 0 0 1 .734.215l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0"/></svg></span> Integrating with CMake</a></li>
+<li><a href="../cmake/">Integrating with CMake <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13.22 19.03a.75.75 0 0 1 0-1.06L18.19 13H3.75a.75.75 0 0 1 0-1.5h14.44l-4.97-4.97a.749.749 0 0 1 .326-1.275.75.75 0 0 1 .734.215l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0"/></svg></span></a></li>
 </ul>
 </div>
 
