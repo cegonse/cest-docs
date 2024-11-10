@@ -133,7 +133,7 @@ Now that all the application's business logic is being compiled into a static li
 
 The CMake rules to include the test suite from the previous example (`calculator.test.cpp`) would be like the following:
 
-```cmake title="Basic rules to generate the library and application"
+```cmake title="Rules to build all the project's binaries"
 cmake_minimum_required(VERSION 3.5)
 project(Calculator)
 
