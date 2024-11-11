@@ -9,7 +9,6 @@ nav:
     - Writing your first test: quickstart/first.md
     - Integrating with CMake: quickstart/cmake.md
     - Testing C code: quickstart/bare_c.md
-    - Creating custom assertions: quickstart/custom_expect.md
   - API Reference: reference.md
 markdown_extensions:
   - attr_list

@@ -84,7 +84,7 @@
 
     ---
 
-    Checkout the [quick start](./quickstart/first.md) guide and start
+    Check out the [quick start](./quickstart/first.md) guide and start
     building your first test in a minute!
 
     [:octicons-arrow-right-24: Quick start](./quickstart/first.md)
@@ -106,23 +106,25 @@ All features are included in a single C++ header,
 making it easy to integrate into any project's existing pipeline. Just include `cest` in each test file to compile a self-contained and runnable test
 
 ### :material-lightbulb-on: BDD inspired API
-By using `it` , `describe` and `expect`, write your tests
-as you would in JavaScript, Python or Ruby. One of the main objectives of Cest is slashing the learning curve towards C++ testing. No more esoteric syntax in C++ tests!
+Write tests in a familiar BDD style, using `it`, `describe`, and `expect` — no complex C++ knowledge required.
 
 ### :fontawesome-solid-wand-magic-sparkles: Feature rich from the get-go
 Includes exception handling assertions, parametrized tests, pointer assertions, integration with STL collections, and more. Want more? Planned features include parametric tests, extended collection support, async execution support, and more
 
+### :material-code-block-braces: Create expressive tests for your C code
+Are you creating a C application or library? Use Cest Framework to add expressivity and semantics to your C codebase, by using all the features provided by C++ in your tests.
+
 # <center>Contribute to Cest Framework</center>
 
-Do you like Cest Framework? Are you planning on using it on your C or C++ projects?
-
-If you enjoy it, it would be great to have your Star in the [GitHub repository](https://github.com/cegonse/cest)!
+Do you like Cest Framework? Are you planning on using it on your C or C++ projects? If you enjoy it, it would be great to have your Star in the [GitHub repository](https://github.com/cegonse/cest)!
 
 Are you missing any feature? Open an issue and let's start the conversation to get it implemented.
 
-Do you feel like contributing? Check the contribution guide in the GitHub repository README file, and contribute to Cest. These are the current contributors of Cest, click on their avatars to go to their GitHub profiles:
+Do you want to contribute? Check the contribution guide in the GitHub repository README file, and start improving Cest.
+
+These are the current contributors of Cest. Click on their avatars to visit their GitHub profiles:
 
 <div class="grid cards" markdown>
-  <a href="https://github.com/cegonse"><img width="128" src="https://avatars.githubusercontent.com/u/10237441?v=4"></img></a>
-  <a href="https://github.com/jamofer"><img width="128" src="https://avatars.githubusercontent.com/u/9080627?v=4"></img></a>
+  <a href="https://github.com/cegonse"><img title="@cegonse" width="64" style="border-radius: 8px" src="https://avatars.githubusercontent.com/u/10237441?v=4"></img></a>
+  <a href="https://github.com/jamofer"><img title="@jamofer" width="64" style="border-radius: 8px" src="https://avatars.githubusercontent.com/u/9080627?v=4"></img></a>
 </div>
