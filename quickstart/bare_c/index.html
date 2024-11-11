@@ -12,7 +12,7 @@
         <link rel="prev" href="../cmake/">
       
       
-        <link rel="next" href="../custom_expect/">
+        <link rel="next" href="../../reference/">
       
       
       <link rel="icon" href="../../images/favicon.png">
@@ -357,6 +357,17 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Testing C code
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -367,27 +378,70 @@
 
       </a>
       
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../custom_expect/" class="md-nav__link">
         
-  
-  <span class="md-ellipsis">
-    Creating custom assertions
-  </span>
-  
 
-      </a>
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      Setup
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-c-code-under-test" class="md-nav__link">
+    <span class="md-ellipsis">
+      The C code under test
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-test-suite-source-file" class="md-nav__link">
+    <span class="md-ellipsis">
+      The test suite source file
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#compiling-the-c-test-with-the-c-code" class="md-nav__link">
+    <span class="md-ellipsis">
+      Compiling the C++ test with the C code
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#next-reading" class="md-nav__link">
+    <span class="md-ellipsis">
+      Next reading
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -440,6 +494,59 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      Setup
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-c-code-under-test" class="md-nav__link">
+    <span class="md-ellipsis">
+      The C code under test
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-test-suite-source-file" class="md-nav__link">
+    <span class="md-ellipsis">
+      The test suite source file
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#compiling-the-c-test-with-the-c-code" class="md-nav__link">
+    <span class="md-ellipsis">
+      Compiling the C++ test with the C code
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#next-reading" class="md-nav__link">
+    <span class="md-ellipsis">
+      Next reading
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -454,10 +561,62 @@
 
 
 <h1 id="testing-c-code">Testing C code</h1>
+<p>There are many C testing frameworks, such as the excellent <a href="https://www.throwtheswitch.org/unity">Unity Framework</a>. If you wish to be able to create more semantic, expressive test for your C code, you can leverage building your tests in C++ with Cest Framework.</p>
+<h2 id="setup">Setup</h2>
+<p>To avoid introducing additional complexity to this example, we will invoke the C and C++ compilers directly. We will assume <code>gcc</code> and <code>g++</code> are available in your system.</p>
+<p>If you are using macOS and have installed XCode Build Tools, you will probably have to use CLang by invoking <code>clang</code> and <code>clang++</code>.</p>
+<p>Finally, let's install the latest version of Cest Framework. You can get the latest version from <a href="https://github.com/cegonse/cest/releases">GitHub</a>,
+or directly run in the terminal:</p>
+<div class="highlight"><span class="filename">Installing Cest Framework</span><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>wget<span class="w"> </span>https://github.com/cegonse/cest/releases/download/pre-v2/cest
+</code></pre></div>
+<h2 id="the-c-code-under-test">The C code under test</h2>
+<p>As in the first example, we will create a simple calculator app. Let's start by creating a C file to hold the business logic, along with its header to export the function.</p>
+<div class="highlight"><span class="filename">calculator.c</span><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;calculator.h&quot;</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="kt">int</span><span class="w"> </span><span class="nf">Sum</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">b</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">b</span><span class="p">;</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="p">}</span>
+</code></pre></div>
+<div class="highlight"><span class="filename">calculator.h</span><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="cp">#pragma once</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="kt">int</span><span class="w"> </span><span class="nf">Sum</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">b</span><span class="p">);</span>
+</code></pre></div>
+<h2 id="the-test-suite-source-file">The test suite source file</h2>
+<p>Then, let's create a C++ file to hold the test for our business logic. Check the annotations (<span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 13h-4v4h-2v-4H7v-2h4V7h2v4h4m-5-9A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10A10 10 0 0 0 12 2"/></svg></span>) to know
+more about each section of the test file.</p>
+<div class="highlight"><span class="filename">calculator.test.cpp</span><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;cest&gt;</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="k">extern</span><span class="w"> </span><span class="s">&quot;C&quot;</span><span class="w"> </span><span class="c1">// (1)</span>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="p">{</span>
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="w">  </span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;calculator.h&gt;</span>
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="p">}</span>
+<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>
+<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="n">describe</span><span class="p">(</span><span class="s">&quot;Calculator&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">[]()</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="w">  </span><span class="n">it</span><span class="p">(</span><span class="s">&quot;performs addition&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">[]()</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a><span class="w">    </span><span class="n">expect</span><span class="p">(</span><span class="n">Sum</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">)).</span><span class="n">toEqual</span><span class="p">(</span><span class="mi">4</span><span class="p">);</span>
+<a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a><span class="w">  </span><span class="p">});</span>
+<a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a><span class="p">});</span>
+</code></pre></div>
+<ol>
+<li>We indicate the <code>calculator.h</code> header file should be included following the C naming convention. The compiler would expect mangled symbols otherwise, and compilation would fail.</li>
+</ol>
+<h2 id="compiling-the-c-test-with-the-c-code">Compiling the C++ test with the C code</h2>
+<p>Now that we have all the source files in place, we can compile both the C code with the business logic, and the C++ test as a stand-alone executable.</p>
+<p>To do this, we will compile both source files as object files with their respective compilers (C and C++ compilers). Then, invoke the C++ compiler to link all the object files into a single executable.</p>
+<div class="highlight"><span class="filename">Compiling and linking sources</span><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>gcc<span class="w"> </span>-c<span class="w"> </span>calculator.c<span class="w"> </span>-o<span class="w"> </span>calculator.o
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>g++<span class="w"> </span>-I.<span class="w"> </span>-c<span class="w"> </span>calculator.test.cpp<span class="w"> </span>-o<span class="w"> </span>calculator.test.o
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>g++<span class="w"> </span>calculator.test.o<span class="w"> </span>calculator.o<span class="w"> </span>-o<span class="w"> </span>test_calculator
+</code></pre></div>
+<p>After compiling the test executable, we can run it to run our test:</p>
+<div class="highlight"><span class="filename">Running the test</span><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>./test_calculator
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="w"> </span>PASS<span class="w">  </span>calculator.test.cpp:9<span class="w"> </span>performs<span class="w"> </span>addition
+</code></pre></div>
+<h2 id="next-reading">Next reading</h2>
+<p>After finishing this example, you have learned how to combine Cest Framework with C code to create expressive tests for your C code.</p>
+<p>You can combine this example with the CMake example to create a powerful build system, capable of combining your C code with C++ tests while automating building of execution of your tests and applications.</p>
 <div class="grid cards" style="padding-top: 24px">
 <ul>
 <li><a href="../cmake/"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10.78 19.03a.75.75 0 0 1-1.06 0l-6.25-6.25a.75.75 0 0 1 0-1.06l6.25-6.25a.749.749 0 0 1 1.275.326.75.75 0 0 1-.215.734L5.81 11.5h14.44a.75.75 0 0 1 0 1.5H5.81l4.97 4.97a.75.75 0 0 1 0 1.06"/></svg></span> Integrating with CMake</a></li>
-<li><a href="../custom_expect/">Creating custom assertions <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13.22 19.03a.75.75 0 0 1 0-1.06L18.19 13H3.75a.75.75 0 0 1 0-1.5h14.44l-4.97-4.97a.749.749 0 0 1 .326-1.275.75.75 0 0 1 .734.215l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0"/></svg></span></a></li>
 </ul>
 </div>
 
