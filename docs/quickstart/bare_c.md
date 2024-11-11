@@ -12,7 +12,7 @@ Finally, let's install the latest version of Cest Framework. You can get the lat
 or directly run in the terminal:
 
 ```bash title="Installing Cest Framework"
-wget https://github.com/cegonse/cest/releases/download/pre-v2/cest
+wget https://github.com/cegonse/cest/releases/download/v1/cest
 ```
 
 ## The C code under test
