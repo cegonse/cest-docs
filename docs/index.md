@@ -105,6 +105,10 @@
 All features are included in a single C++ header,
 making it easy to integrate into any project's existing pipeline. Just include `cest` in each test file to compile a self-contained and runnable test
 
+### :material-rocket-launch: Powerful Test Runner
+Avoid rolling your own code to manage test suites, and run all Cest tests with its built-in Runner. Filter
+tests by name or only run failed tests.
+
 ### :material-lightbulb-on: BDD inspired API
 Write tests in a familiar BDD style, using `it`, `describe`, and `expect` — no complex C++ knowledge required.
 
@@ -114,6 +118,7 @@ Includes exception handling assertions, parametrized tests, pointer assertions, 
 ### :material-code-block-braces: Create expressive tests for your C code
 Are you creating a C application or library? Use Cest Framework to add expressivity and semantics to your C codebase, by using all the features provided by C++ in your tests.
 
+<br />
 # <center>Contribute to Cest Framework</center>
 
 Do you like Cest Framework? Are you planning on using it on your C or C++ projects? If you enjoy it, it would be great to have your Star in the [GitHub repository](https://github.com/cegonse/cest)!

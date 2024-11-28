@@ -7,6 +7,7 @@ nav:
   - Home: index.md
   - Quickstart:
     - Writing your first test: quickstart/first.md
+    - Using Cest Runner: quickstart/runner.md
     - Integrating with CMake: quickstart/cmake.md
     - Testing C code: quickstart/bare_c.md
   - API Reference: reference.md

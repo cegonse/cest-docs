@@ -10,7 +10,9 @@ To complete this guide, you must have a working installation of [CMake](https://
 
 ## Setup
 
-This guide starts from the last point of the previous guide (_Writing your first test_). The directory structure should look like this:
+This guide starts from the last point of the first guide (_Writing your first test_). If you haven't gone through the first guide, its recommended you go through that content first.
+
+After completing the first guide, the directory structure should look like this:
 
 ```title="Directory structure"
 /calculator
@@ -199,6 +201,6 @@ CMake is a complex topic, and there is enormous flexibility on what you can achi
 In the next section, you will learn how to use Cest Framework to test C code, adding powerful semantics to C testing.
 
 <div class="grid cards" style="padding-top: 24px" markdown>
-- [:octicons-arrow-left-24: Writing your first test](./first.md)
+- [:octicons-arrow-left-24: Using Cest Runner](./runner.md)
 - [Testing C Code :octicons-arrow-right-24:](./bare_c.md)
 </div>

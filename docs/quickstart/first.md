@@ -74,7 +74,7 @@ or directly run in the terminal:
 
 ```bash title="Installing Cest Framework"
 cd lib
-wget https://github.com/cegonse/cest/releases/download/v1/cest
+wget https://github.com/cegonse/cest/releases/download/v2/cest
 cd ..
 ```
 
@@ -219,10 +219,10 @@ g++ src/main.cpp src/calculator.cpp -o build/calculator
 
 ## Next reading
 
-With this simple example, you have seen how does Cest Framework work, how to create a simple test, and how to integrate it with an application.
+With this simple example, we have seen how does Cest Framework work, how to create a simple test, and how to integrate it with an application.
 
-Next, you can check how to integrate Cest Framework with a complex build system such as CMake.
+Next, we will learn how to integrate Cest Runner to easily manage our test suite.
 
 <div class="grid cards" style="padding-top: 24px" markdown>
-- [Integrating with CMake :octicons-arrow-right-24:](./cmake.md)
+- [Using Cest Runner :octicons-arrow-right-24:](./runner.md)
 </div>

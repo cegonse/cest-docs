@@ -125,6 +125,13 @@ expect(0x00000000).toBeNull(); // This will pass, as NULL equals zero
 !!! warning
     Since assertions are generated through templates, asserted type `T` must implement specific operators to match them to the target value. Basic (built-in) types implement them, but if using custom types (like classes or structures), the operators will have to be manually overloaded.
 
+To assert negated values, you can use the `Not` operator. For example:
+
+```cpp
+expect("hello").Not->toEqual("bye");
+expect(123).Not->toBe(321);
+```
+
 ### Generic types
 
 These assertions apply to a `value` of any type `T`, including the ones Cest has a specialization for (see next sections).
@@ -292,7 +299,7 @@ describe("Calculator", []() {
 });
 ```
 
-## Cest runner CLI parameters
+## Cest test runner CLI parameters
 
 Cest tests are stand-alone executables which have to be compiled and run individually. Execution behavior can be modified through command line options.
 
@@ -303,6 +310,15 @@ Cest tests are stand-alone executables which have to be compiled and run individ
 | `-o` / `--only-suite-result` | Only output the result of the whole test suite as a single line |
 | `-t` / `--tree-suite-result` | Output the result of the test suite in tree format, with indents for each nested suite |
 
+## Cest Runner CLI parameters
+
+Cest runner can be used to launch and operate Cest tests in a simple way. Execution behavior can be modified through command line options.
+
+| Option |  Description |
+| ------ | ------------ |
+| `[directory]` | Target directory to look for tests to run. Defaults to `$CWD` |
+| `--watch` | Run in watch mode. An interactive UI is available to filter which tests should run. |
+
 ## Signal behavior
 
-The Cest runner captures the following POSIX signals upon startup: `SIGSEGV`, `SIGFPE`, `SIGBUS`, `SIGILL`, `SIGTERM`, `SIGXCPU` and `SIGXFSZ`. Test are marked as failed if any of them raises during its execution. The POSIX function `signal()` is used for this purpose. Take this into account when testing code that captures signals, as both could interfer.
+The Cest test runner captures the following POSIX signals upon startup: `SIGSEGV`, `SIGFPE`, `SIGBUS`, `SIGILL`, `SIGTERM`, `SIGXCPU` and `SIGXFSZ`. Test are marked as failed if any of them raises during its execution. The POSIX function `signal()` is used for this purpose. Take this into account when testing code that captures signals, as both could interfer.
