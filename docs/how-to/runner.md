@@ -154,11 +154,11 @@ Follow the on-screen prompts to apply filters as you need. You will get the hang
 
 ## Next reading
 
-After completing this guide, you have seen how to use the Cest Runner to simplify execution of the test suites of your project. In this guide we only had a single test suite, which made it a bit pointless. But as the number of tests in your project grows, you will see the benefits of using Cest Runner quickly.
+After completing this guide, we have seen how to use the Cest Runner to simplify execution of the test suites of your project. In this guide we only had a single test suite, which made it a bit pointless. But as the number of tests in your project grows, you will see the benefits of using Cest Runner quickly.
 
 In the next guide, we will see how to integrate Cest Framework with a complex build system such as CMake.
 
 <div class="grid cards" style="padding-top: 24px" markdown>
-- [:octicons-arrow-left-24: Writing your first test](./first.md)
+- [:octicons-arrow-left-24: Writing your first test](../quickstart/first.md)
 - [Integrating with CMake :octicons-arrow-right-24:](./cmake.md)
 </div>

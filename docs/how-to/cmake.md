@@ -194,11 +194,11 @@ After running the compilation process, the `test_calculator` test suite runnable
 
 ## Next reading
 
-After completing this guide, you have seen how to integrate Cest Framework with CMake and automate the compilation of test suites and the application.
+After completing this guide, we have seen how to integrate Cest Framework with CMake and automate the compilation of test suites and the application.
 
 CMake is a complex topic, and there is enormous flexibility on what you can achieve with it.
 
-In the next section, you will learn how to use Cest Framework to test C code, adding powerful semantics to C testing.
+In the next section, we will see how to use Cest Framework to test C code, adding powerful semantics to C testing.
 
 <div class="grid cards" style="padding-top: 24px" markdown>
 - [:octicons-arrow-left-24: Using Cest Runner](./runner.md)

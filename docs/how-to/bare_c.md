@@ -76,7 +76,7 @@ After compiling the test executable, we can run it to run our test:
 
 ## Next reading
 
-After finishing this example, you have learned how to combine Cest Framework with C code to create expressive tests for your C code.
+After finishing this example, we have seen how to combine Cest Framework with C code to create expressive tests for your C code.
 
 You can combine this example with the CMake example to create a powerful build system, capable of combining your C code with C++ tests while automating building of execution of your tests and applications.
 

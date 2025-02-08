@@ -7,9 +7,10 @@ nav:
   - Home: index.md
   - Quickstart:
     - Writing your first test: quickstart/first.md
-    - Using Cest Runner: quickstart/runner.md
-    - Integrating with CMake: quickstart/cmake.md
-    - Testing C code: quickstart/bare_c.md
+  - How-to guides:
+    - Using Cest Runner: how-to/runner.md
+    - Integrating with CMake: how-to/cmake.md
+    - Testing C code: how-to/bare_c.md
   - API Reference: reference.md
 markdown_extensions:
   - attr_list

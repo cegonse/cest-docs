@@ -221,8 +221,8 @@ g++ src/main.cpp src/calculator.cpp -o build/calculator
 
 With this simple example, we have seen how does Cest Framework work, how to create a simple test, and how to integrate it with an application.
 
-Next, we will learn how to integrate Cest Runner to easily manage our test suite.
+Next, we will see how to integrate Cest Runner to easily manage our test suite.
 
 <div class="grid cards" style="padding-top: 24px" markdown>
-- [Using Cest Runner :octicons-arrow-right-24:](./runner.md)
+- [Using Cest Runner :octicons-arrow-right-24:](../how-to/runner.md)
 </div>
