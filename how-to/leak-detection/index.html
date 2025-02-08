@@ -9,21 +9,25 @@
       
       
       
+        <link rel="prev" href="../bare_c/">
       
       
-      <link rel="icon" href="/images/favicon.png">
+        <link rel="next" href="../../reference/">
+      
+      
+      <link rel="icon" href="../../images/favicon.png">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.3">
     
     
       
-        <title>cest->framework();</title>
+        <title>Detecting memory leaks - cest->framework();</title>
       
     
     
-      <link rel="stylesheet" href="/assets/stylesheets/main.d7758b05.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.d7758b05.min.css">
       
         
-        <link rel="stylesheet" href="/assets/stylesheets/palette.06af60db.min.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
       
       
 
@@ -42,7 +46,7 @@
       
     
     
-    <script>__md_scope=new URL("/",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -67,6 +71,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#detecting-memory-leaks" class="md-skip">
+          Skip to content
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -79,9 +88,9 @@
 
 <header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="/." title="cest-&gt;framework();" class="md-header__button md-logo" aria-label="cest->framework();" data-md-component="logo">
+    <a href="../.." title="cest-&gt;framework();" class="md-header__button md-logo" aria-label="cest->framework();" data-md-component="logo">
       
-  <img src="/assets/logo.png" alt="logo">
+  <img src="../../assets/logo.png" alt="logo">
 
     </a>
     <label class="md-header__button md-icon" for="__drawer">
@@ -98,7 +107,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              
+              Detecting memory leaks
             
           </span>
         </div>
@@ -211,9 +220,9 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="/." title="cest-&gt;framework();" class="md-nav__button md-logo" aria-label="cest->framework();" data-md-component="logo">
+    <a href="../.." title="cest-&gt;framework();" class="md-nav__button md-logo" aria-label="cest->framework();" data-md-component="logo">
       
-  <img src="/assets/logo.png" alt="logo">
+  <img src="../../assets/logo.png" alt="logo">
 
     </a>
     cest->framework();
@@ -240,7 +249,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/." class="md-nav__link">
+      <a href="../.." class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -297,7 +306,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/quickstart/first/" class="md-nav__link">
+      <a href="../../quickstart/first/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -323,17 +332,19 @@
       
   
   
+    
   
   
+  
     
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
         
           
           <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
@@ -348,7 +359,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_3">
             <span class="md-nav__icon md-icon"></span>
             How-to guides
@@ -362,7 +373,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/how-to/runner/" class="md-nav__link">
+      <a href="../runner/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -384,7 +395,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/how-to/cmake/" class="md-nav__link">
+      <a href="../cmake/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -406,7 +417,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/how-to/bare_c/" class="md-nav__link">
+      <a href="../bare_c/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -425,10 +436,31 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="/how-to/leak-detection/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Detecting memory leaks
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   <span class="md-ellipsis">
@@ -438,6 +470,53 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      Setup
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#test-code-with-a-memory-leak" class="md-nav__link">
+    <span class="md-ellipsis">
+      Test code with a memory leak
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#compiling-with-leak-sanitizer-support" class="md-nav__link">
+    <span class="md-ellipsis">
+      Compiling with Leak Sanitizer support
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -457,7 +536,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/reference/" class="md-nav__link">
+      <a href="../../reference/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -488,6 +567,43 @@
   
   
   
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      Setup
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#test-code-with-a-memory-leak" class="md-nav__link">
+    <span class="md-ellipsis">
+      Test code with a memory leak
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#compiling-with-leak-sanitizer-support" class="md-nav__link">
+    <span class="md-ellipsis">
+      Compiling with Leak Sanitizer support
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
   
 </nav>
                   </div>
@@ -499,8 +615,85 @@
             <div class="md-content" data-md-component="content">
               <article class="md-content__inner md-typeset">
                 
-  <h1>404 - Not found</h1>
+                  
 
+
+
+<h1 id="detecting-memory-leaks">Detecting memory leaks</h1>
+<p>Memory leaks are one of the most common pitfalls C and C++ developers face when developing complex applications. Thankfully, there are many tools that help with detecting and avoiding memory leaks during development.</p>
+<p>One such tool is Google's <a href="https://github.com/google/sanitizers/wiki/AddressSanitizerLeakSanitizer">Leak Sanitizer</a>, part of Address Sanitiizer, which comes built-in with new versions of the GNU C Compiler and Clang. Leak Sanitizer instruments calls to memory allocations and deallocations, and generates a report upon program termination if there are any potential leaks.</p>
+<p>Cest Framework includes support to call Leak Sanitizer's instrumentation from the test itself, causing tests to fail when a leak is detected.</p>
+<p>In this how to guide, we will see how to compile a Cest Framework test with Leak Sanitizer enabled.</p>
+<h2 id="setup">Setup</h2>
+<p>To avoid introducing additional complexity to this example, we will invoke the C++ compiler directly. We will assume <code>g++</code> is available in your system.</p>
+<p>If you are using macOS and have installed XCode Build Tools, you will probably have to use CLang by invoking <code>clang++</code>.</p>
+<p>Finally, let's install the latest version of Cest Framework. You can get the latest version from <a href="https://github.com/cegonse/cest/releases">GitHub</a>,
+or directly run in the terminal:</p>
+<div class="highlight"><span class="filename">Installing Cest Framework</span><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>wget<span class="w"> </span>https://github.com/cegonse/cest/releases/download/v3/cest
+</code></pre></div>
+<h2 id="test-code-with-a-memory-leak">Test code with a memory leak</h2>
+<p>To showcase how Leak Sanitizer and Cest Framework work together, we will create a simple test that allocates memory but does not free it.</p>
+<div class="highlight"><span class="filename">leak.test.cpp</span><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;cest&gt;</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="n">describe</span><span class="p">(</span><span class="s">&quot;Test with leaks&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">[]()</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">  </span><span class="n">it</span><span class="p">(</span><span class="s">&quot;does not free its memory&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">[]()</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="o">*</span><span class="n">ptr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="kt">int</span><span class="p">;</span>
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="w">    </span><span class="o">*</span><span class="n">ptr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">123</span><span class="p">;</span>
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="w">  </span><span class="p">});</span>
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="p">});</span>
+</code></pre></div>
+<h2 id="compiling-with-leak-sanitizer-support">Compiling with Leak Sanitizer support</h2>
+<p>Now that we have the test file in place, we can compile it with Leak Sanitizer enabled. We will do so by enabling full address sanitization, as Leak Sanitizer is a sub-module of Address Sanitizer. Cest Framework will automatically detect that Leak Sanitizer has been enabled at compile time.</p>
+<div class="highlight"><span class="filename">Compiling and linking sources</span><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>g++<span class="w"> </span>-g<span class="w"> </span>-I.<span class="w"> </span>-fsanitize<span class="o">=</span>address<span class="w"> </span>leak.test.cpp<span class="w"> </span>-o<span class="w"> </span>test_leaks
+</code></pre></div>
+<p>After compiling the test executable, we can run it to see the results:</p>
+<div class="highlight"><span class="filename">Running the test</span><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>./test_leaks
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="w"> </span>FAIL<span class="w">  </span>leak.test.cpp:4<span class="w"> </span>does<span class="w"> </span>not<span class="w"> </span>free<span class="w"> </span>its<span class="w"> </span>memory
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w"> </span>Failed<span class="w"> </span>at<span class="w"> </span>line<span class="w"> </span><span class="m">4</span>:<span class="w"> </span>Detected<span class="w"> </span>potential<span class="w"> </span>memory<span class="w"> </span>leaks<span class="w"> </span>during<span class="w"> </span><span class="nb">test</span><span class="w"> </span>execution.
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="w">   </span><span class="m">1</span><span class="w"> </span><span class="p">|</span>
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="w">   </span><span class="m">2</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>describe<span class="o">(</span><span class="s2">&quot;Test with leaks&quot;</span>,<span class="w"> </span><span class="o">[]()</span><span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="w">   </span><span class="m">3</span><span class="w"> </span><span class="p">|</span><span class="w">   </span>it<span class="o">(</span><span class="s2">&quot;does not free its memory&quot;</span>,<span class="w"> </span><span class="o">[]()</span><span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="w"> </span>&gt;<span class="w"> </span><span class="m">4</span><span class="w"> </span><span class="p">|</span><span class="w">     </span>int<span class="w"> </span>*ptr<span class="w"> </span><span class="o">=</span><span class="w"> </span>new<span class="w"> </span>int<span class="p">;</span>
+<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="w">   </span><span class="m">5</span><span class="w"> </span><span class="p">|</span><span class="w">     </span>*ptr<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">123</span><span class="p">;</span>
+<a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="w">   </span><span class="m">6</span><span class="w"> </span><span class="p">|</span><span class="w">   </span><span class="o">})</span><span class="p">;</span>
+<a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a><span class="w">   </span><span class="m">7</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="o">})</span><span class="p">;</span>
+<a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a>AddressSanitizer<span class="w"> </span>result:
+<a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a>
+<a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a><span class="o">=================================================================</span>
+<a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a><span class="o">==</span><span class="nv">14523</span><span class="o">==</span>ERROR:<span class="w"> </span>LeakSanitizer:<span class="w"> </span>detected<span class="w"> </span>memory<span class="w"> </span>leaks
+<a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a>
+<a id="__codelineno-3-16" name="__codelineno-3-16" href="#__codelineno-3-16"></a>Direct<span class="w"> </span>leak<span class="w"> </span>of<span class="w"> </span><span class="m">4</span><span class="w"> </span>byte<span class="o">(</span>s<span class="o">)</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="m">1</span><span class="w"> </span>object<span class="o">(</span>s<span class="o">)</span><span class="w"> </span>allocated<span class="w"> </span>from:
+<a id="__codelineno-3-17" name="__codelineno-3-17" href="#__codelineno-3-17"></a><span class="w">    </span><span class="c1">#0 0x7fb10bd82647 in operator new(unsigned long) ../../../../src/libsanitizer/asan/asan_new_delete.cpp:99</span>
+<a id="__codelineno-3-18" name="__codelineno-3-18" href="#__codelineno-3-18"></a><span class="w">    </span><span class="c1">#1 0x55ae1c44574f in operator() /tmp/leak.test.cpp:3</span>
+<a id="__codelineno-3-19" name="__codelineno-3-19" href="#__codelineno-3-19"></a><span class="w">    </span><span class="c1">#2 0x55ae1c4473a9 in __invoke_impl&lt;void, &lt;lambda()&gt;::&lt;lambda()&gt;&amp;&gt; /usr/include/c++/10/bits/invoke.h:60</span>
+<a id="__codelineno-3-20" name="__codelineno-3-20" href="#__codelineno-3-20"></a><span class="w">    </span><span class="c1">#3 0x55ae1c446dfc in __invoke_r&lt;void, &lt;lambda()&gt;::&lt;lambda()&gt;&amp;&gt; /usr/include/c++/10/bits/invoke.h:153</span>
+<a id="__codelineno-3-21" name="__codelineno-3-21" href="#__codelineno-3-21"></a><span class="w">    </span><span class="c1">#4 0x55ae1c446696 in _M_invoke /usr/include/c++/10/bits/std_function.h:291</span>
+<a id="__codelineno-3-22" name="__codelineno-3-22" href="#__codelineno-3-22"></a><span class="w">    </span><span class="c1">#5 0x55ae1c44aa07 in std::function&lt;void ()&gt;::operator()() const /usr/include/c++/10/bits/std_function.h:622</span>
+<a id="__codelineno-3-23" name="__codelineno-3-23" href="#__codelineno-3-23"></a><span class="w">    </span><span class="c1">#6 0x55ae1c442584 in cest::runTestSuite(cest::TestSuite*) cest:664</span>
+<a id="__codelineno-3-24" name="__codelineno-3-24" href="#__codelineno-3-24"></a><span class="w">    </span><span class="c1">#7 0x55ae1c445390 in main cest:1366</span>
+<a id="__codelineno-3-25" name="__codelineno-3-25" href="#__codelineno-3-25"></a><span class="w">    </span><span class="c1">#8 0x7fb10b93fd09 in __libc_start_main ../csu/libc-start.c:308</span>
+<a id="__codelineno-3-26" name="__codelineno-3-26" href="#__codelineno-3-26"></a>
+<a id="__codelineno-3-27" name="__codelineno-3-27" href="#__codelineno-3-27"></a>SUMMARY:<span class="w"> </span>AddressSanitizer:<span class="w"> </span><span class="m">4</span><span class="w"> </span>byte<span class="o">(</span>s<span class="o">)</span><span class="w"> </span>leaked<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="m">1</span><span class="w"> </span>allocation<span class="o">(</span>s<span class="o">)</span>.
+</code></pre></div>
+<p>Understanding Leak Sanitizer's stack traces takes some time to get used to, but we can see how in the frame #1 (corresponding to the leak.test.cpp file), there is a leak detected in line 3. This line matches with our test, which is not releasing the memory as it should.</p>
+<div class="grid cards" style="padding-top: 24px">
+<ul>
+<li><a href="../bare_c/"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10.78 19.03a.75.75 0 0 1-1.06 0l-6.25-6.25a.75.75 0 0 1 0-1.06l6.25-6.25a.749.749 0 0 1 1.275.326.75.75 0 0 1-.215.734L5.81 11.5h14.44a.75.75 0 0 1 0 1.5H5.81l4.97 4.97a.75.75 0 0 1 0 1.06"/></svg></span> Testing C Code</a></li>
+</ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
               </article>
             </div>
           
@@ -583,10 +776,10 @@
     </div>
     
     
-    <script id="__config" type="application/json">{"base": "/", "features": ["header.autohide", "content.code.annotate"], "search": "/assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": "../..", "features": ["header.autohide", "content.code.annotate"], "search": "../../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
-      <script src="/assets/javascripts/bundle.f1b6f286.min.js"></script>
+      <script src="../../assets/javascripts/bundle.f1b6f286.min.js"></script>
       
     
   </body>
