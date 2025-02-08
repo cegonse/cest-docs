@@ -74,7 +74,7 @@ or directly run in the terminal:
 
 ```bash title="Installing Cest Framework"
 cd lib
-wget https://github.com/cegonse/cest/releases/download/v2/cest
+wget https://github.com/cegonse/cest/releases/download/v3/cest
 cd ..
 ```
 

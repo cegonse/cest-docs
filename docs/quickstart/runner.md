@@ -25,13 +25,13 @@ After completing the first guide, the directory structure should look like this:
   └ calculator
 ```
 
-First, we'll download the latest version of cest-runner from [GitHub](https://github.com/cegonse/cest/releases/download/v2/cest-runner-x64-linux). Right now, only Linux x64 builds of the Cest Runner are provided in GitHub. If you are running other platform (such as macOS or FreeBSD) or CPU architecture, you will have to build Cest Runner yourself from sources.
+First, we'll download the latest version of cest-runner from [GitHub](https://github.com/cegonse/cest/releases/download/v3/cest-runner-x64-linux). Right now, only Linux x64 builds of the Cest Runner are provided in GitHub. If you are running other platform (such as macOS or FreeBSD) or CPU architecture, you will have to build Cest Runner yourself from sources.
 
 Let's create a `bin` directory to place the `cest-runner` binary:
 
 ```bash
 mkdir -p bin
-cd bin && wget https://github.com/cegonse/cest/releases/download/v2/cest-runner-x64-linux
+cd bin && wget https://github.com/cegonse/cest/releases/download/v3/cest-runner-x64-linux
 mv cest-runner-x64-linux cest-runner
 chmod +x cest-runner
 cd ..
