@@ -80,6 +80,9 @@ After finishing this example, we have seen how to combine Cest Framework with C 
 
 You can combine this example with the CMake example to create a powerful build system, capable of combining your C code with C++ tests while automating building of execution of your tests and applications.
 
+In the next article, we will see how can use Cest Framework to easily detect memory leaks in our code ahead of time.
+
 <div class="grid cards" style="padding-top: 24px" markdown>
 - [:octicons-arrow-left-24: Integrating with CMake](./cmake.md)
+- [Detecting memory leaks :octicons-arrow-right-24:](./leak-detection.md)
 </div>

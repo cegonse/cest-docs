@@ -11,6 +11,7 @@ nav:
     - Using Cest Runner: how-to/runner.md
     - Integrating with CMake: how-to/cmake.md
     - Testing C code: how-to/bare_c.md
+    - Detecting memory leaks: how-to/leak-detection.md
   - API Reference: reference.md
 markdown_extensions:
   - attr_list
