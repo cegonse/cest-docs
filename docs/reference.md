@@ -322,3 +322,7 @@ Cest runner can be used to launch and operate Cest tests in a simple way. Execut
 ## Signal behavior
 
 The Cest test runner captures the following POSIX signals upon startup: `SIGSEGV`, `SIGFPE`, `SIGBUS`, `SIGILL`, `SIGTERM`, `SIGXCPU` and `SIGXFSZ`. Test are marked as failed if any of them raises during its execution. The POSIX function `signal()` is used for this purpose. Take this into account when testing code that captures signals, as both could interfer.
+
+## Leak Sanitizer integration
+
+The Cest test runner detects whether the test program is being compiled with LSAN enabled by testing against the `__SANITIZE_ADDRESS__` define, which will be defined in all translation units by the compiler if LSAN is enabled. If LSAN is not enabled or not supported, LSAN integration is disabled.
