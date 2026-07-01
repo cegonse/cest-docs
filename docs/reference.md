@@ -587,6 +587,39 @@ On **Linux and macOS**, the following POSIX signals are captured: `SIGSEGV`, `SI
 
 On **Win32** (MinGW), a reduced set of signals is captured: `SIGSEGV`, `SIGFPE`, `SIGILL` and `SIGTERM`. The `SIGBUS`, `SIGXCPU` and `SIGXFSZ` signals are not available on Windows.
 
+### Cest Runner signal reporting
+
+When a test process is killed by a signal while running under Cest Runner, the runner reports the failure with the signal information.
+
+On **Linux and macOS**, the runner displays the POSIX signal number and its name (resolved via `strsignal`):
+
+```
+ FAIL  test_example → Killed by signal 11 (Segmentation fault)
+```
+
+On **Win32**, the runner displays the Windows exception code and a descriptive name:
+
+```
+ FAIL  test_example → Terminated with exception 0xC0000005 (ACCESS_VIOLATION)
+```
+
+The following Win32 exception codes are recognized:
+
+| Code | Name |
+| ---- | ---- |
+| `0xC0000005` | `ACCESS_VIOLATION` |
+| `0xC00000FD` | `STACK_OVERFLOW` |
+| `0xC0000094` | `INTEGER_DIVIDE_BY_ZERO` |
+| `0xC000001D` | `ILLEGAL_INSTRUCTION` |
+| `0xC0000025` | `NONCONTINUABLE_EXCEPTION` |
+| `0x80000003` | `BREAKPOINT` |
+| `0xC0000026` | `INVALID_DISPOSITION` |
+| `0xC000008C` | `ARRAY_BOUNDS_EXCEEDED` |
+| `0xC000008E` | `FLOAT_DIVIDE_BY_ZERO` |
+| `0xC0000090` | `FLOAT_INVALID_OPERATION` |
+| `0xC0000091` | `FLOAT_OVERFLOW` |
+| `0xC0000093` | `FLOAT_UNDERFLOW` |
+
 ## Leak Sanitizer integration
 
 The Cest test runner detects whether the test program is being compiled with LSAN enabled by testing against the `__SANITIZE_ADDRESS__` define, which will be defined in all translation units by the compiler if LSAN is enabled. If LSAN is not enabled or not supported, LSAN integration is disabled.
