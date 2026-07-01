@@ -577,6 +577,7 @@ Cest runner can be used to launch and operate Cest tests in a simple way. Execut
 | ------ | ------------ |
 | `[directory]` | Target directory to look for tests to run. Defaults to `$CWD` |
 | `--watch` | Run in watch mode. An interactive UI is available to filter which tests should run. |
+| `--grep [pattern]` | Only run test files/cases whose name contains `pattern` |
 
 ## Signal behavior
 
