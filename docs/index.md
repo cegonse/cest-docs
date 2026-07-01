@@ -113,7 +113,7 @@ tests by name or only run failed tests.
 Write tests in a familiar BDD style, using `it`, `describe`, and `expect` — no complex C++ knowledge required.
 
 ### :fontawesome-solid-wand-magic-sparkles: Feature rich from the get-go
-Includes exception handling assertions, parametrized tests, pointer assertions, integration with STL collections, and more. Want more? Planned features include parametric tests, extended collection support, async execution support, and more
+Includes exception handling assertions, parametrized tests, pointer assertions, smart pointer assertions, and comprehensive STL collection support for vectors, maps, sets, optionals, tuples, and more
 
 ### :material-code-block-braces: Create expressive tests for your C code
 Are you creating a C application or library? Use Cest Framework to add expressivity and semantics to your C codebase, by using all the features provided by C++ in your tests.
