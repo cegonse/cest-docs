@@ -99,6 +99,16 @@
     [:octicons-arrow-right-24: API Reference](./reference.md)
 </div>
 
+# <center>Interactive test suite runner</center>
+
+Use cest-runner to run your test suites interactively, browse tests and quickly detect failing tests.
+
+<div style="box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2); border-radius: 8px; padding: 8px; background-color: black; margin-bottom: 24px; margin-top: 24px;">
+  <video autoplay loop muted playsinline>
+    <source src="assets/cest-runner.webm" type="video/webm">
+  </video>
+</div>
+
 # <center>Main features</center>
 
 ### :material-source-branch: Single Header
