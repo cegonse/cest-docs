@@ -25,17 +25,60 @@ After completing the first guide, the directory structure should look like this:
   └ calculator
 ```
 
-First, we'll download the latest version of cest-runner from [GitHub](https://github.com/cegonse/cest/releases/download/v5/cest-runner-x64-linux). Right now, only Linux x64 builds of the Cest Runner are provided in GitHub. If you are running other platform (such as macOS or FreeBSD) or CPU architecture, you will have to build Cest Runner yourself from sources.
+First, we'll download the latest version of cest-runner from [GitHub](https://github.com/cegonse/cest/releases/tag/v5). Pre-built binaries are available for Linux, macOS and Windows.
 
-Let's create a `bin` directory to place the `cest-runner` binary:
+Let's create a `bin` directory to place the `cest-runner` binary, and download the appropriate build for your platform:
 
-```bash
-mkdir -p bin
-cd bin && wget https://github.com/cegonse/cest/releases/download/v5/cest-runner-x64-linux
-mv cest-runner-x64-linux cest-runner
-chmod +x cest-runner
-cd ..
-```
+=== "Linux (x64)"
+    ```bash
+    mkdir -p bin
+    cd bin && curl -LO https://github.com/cegonse/cest/releases/download/v5/cest-runner-linux-x64
+    mv cest-runner-linux-x64 cest-runner
+    chmod +x cest-runner
+    cd ..
+    ```
+
+=== "Linux (ARM64)"
+    ```bash
+    mkdir -p bin
+    cd bin && curl -LO https://github.com/cegonse/cest/releases/download/v5/cest-runner-linux-aarch64
+    mv cest-runner-linux-aarch64 cest-runner
+    chmod +x cest-runner
+    cd ..
+    ```
+
+=== "Linux (x86)"
+    ```bash
+    mkdir -p bin
+    cd bin && curl -LO https://github.com/cegonse/cest/releases/download/v5/cest-runner-linux-x86
+    mv cest-runner-linux-x86 cest-runner
+    chmod +x cest-runner
+    cd ..
+    ```
+
+=== "macOS (Apple Silicon)"
+    ```bash
+    mkdir -p bin
+    cd bin && curl -LO https://github.com/cegonse/cest/releases/download/v5/cest-runner-macos-aarch64
+    mv cest-runner-macos-aarch64 cest-runner
+    chmod +x cest-runner
+    cd ..
+    ```
+
+=== "macOS (Intel)"
+    ```bash
+    mkdir -p bin
+    cd bin && curl -LO https://github.com/cegonse/cest/releases/download/v5/cest-runner-macos-x64
+    mv cest-runner-macos-x64 cest-runner
+    chmod +x cest-runner
+    cd ..
+    ```
+
+=== "Windows (x64)"
+    ```powershell
+    New-Item -ItemType Directory -Force -Path bin
+    Invoke-WebRequest -Uri https://github.com/cegonse/cest/releases/download/v5/cest-runner-windows-x64.exe -OutFile bin\cest-runner.exe
+    ```
 
 After downloading the Cest Runner, the directory structure should look like this:
 
